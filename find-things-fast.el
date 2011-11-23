@@ -4,7 +4,7 @@
 ;; Copyright (C) 2006, 2007, 2008 Phil Hagelberg and Doug Alcorn
 
 ;; Author: Elliot Glaysher and Phil Hagelberg and Doug Alcorn
-;; URL: 
+;; URL: https://github.com/mamciek/find-things-fast 
 ;; Version: 1.0
 ;; Created: 2010-02-19
 ;; Keywords: project, convenience
@@ -95,11 +95,8 @@
 ;;; Code:
 
 (defvar ftf-filetypes
-  '("*.h" "*.hpp" "*.cpp" "*.c" "*.cc" "*.cpp" "*.inl" "*.grd" "*.idl" "*.m"
-    "*.mm" "*.py" "*.sh" "*.cfg" "*SConscript" "SConscript*" "*.scons"
-    "*.vcproj" "*.vsprops" "*.make" "*.gyp" "*.gypi")
-  "A list of filetype patterns that grepsource will use. Obviously biased for
-chrome development.")
+  '("*.*")
+  "A list of filetype patterns that grepsource will use.")
 
 (defun ftf-add-filetypes (types)
   "Makes `ftf-filetypes' local to this buffer and adds the
@@ -178,6 +175,7 @@ otherwise defaulting to `find-tag-default'."
         (or default (error "There is no default symbol to grep for."))
       spec))))
 
+;;;###autoload
 (defun ftf-grepsource (cmd-args)
   "Greps the current project, leveraging local repository data
 for speed and falling back on a big \"find | xargs grep\"
@@ -256,6 +254,7 @@ the file name."
 	  (concat (car file-cons) ": "
 		  (cadr (reverse (split-string (cdr file-cons) "/"))))))
 
+;;;###autoload
 (defun ftf-find-file ()
   "Prompt with a completing list of all files in the project to find one.
 
@@ -283,11 +282,13 @@ custom functions which might want to run "
   `(let ((default-directory (ftf-project-directory)))
           ,@body))
 
+;;;###autoload
 (defun ftf-compile ()
   "Run the `compile' function from the project root."
   (interactive)
   (with-ftf-project-root (call-interactively 'compile)))
 
+;;;###autoload
 (defun ftf-gdb ()
   "Run the `gdb' function from the project root."
   (interactive)

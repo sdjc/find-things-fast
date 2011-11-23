@@ -1,3 +1,9 @@
+*Fork notice*
+
+This fork was created in order to provide some changes required (or usefull) by Marmalade Repo (http://marmalade-repo.org) - nothing more
+
+------------------------
+
 *Find Things Fast*
 
 A mode for emacs that helps you work with projects, hopefully with little to no additional configuration on your part.
